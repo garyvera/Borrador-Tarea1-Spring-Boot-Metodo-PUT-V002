@@ -29,4 +29,27 @@ public class CuentaControlador {
         return new ResponseEntity<>(cuentaServicio.guardar(cuenta), HttpStatus.CREATED);
     }
 
+    // ... (otros métodos)
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Cuenta> editar(@PathVariable Long id, @RequestBody @Valid Cuenta cuentaActualizada) {
+        Cuenta cuentaExistente = cuentaServicio.obtenerPorId(id);
+
+        if (cuentaExistente == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        cuentaExistente.setNumero(cuentaActualizada.getNumero());
+        cuentaExistente.setTipo(cuentaActualizada.getTipo());
+        cuentaExistente.setBalanceInicial(cuentaActualizada.getBalanceInicial());
+        cuentaExistente.setSaldo(cuentaActualizada.getSaldo());
+        cuentaExistente.setEstado(cuentaActualizada.getEstado());
+
+        Cuenta cuentaEditada = cuentaServicio.editar(cuentaExistente);
+        return ResponseEntity.ok(cuentaEditada);
+    }
+
+
+
+
 }

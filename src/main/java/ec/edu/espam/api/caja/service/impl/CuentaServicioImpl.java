@@ -15,13 +15,25 @@ public class CuentaServicioImpl implements CuentaServicio {
     private final CuentaRepositorio cuentaRepositorio;
 
     @Override
-    public List<Cuenta> obtenerTodos() {
-        return cuentaRepositorio.findAll();
+    public List<Cuenta> obtenerTodos() { return cuentaRepositorio.findAll();
     }
 
     @Override
     public Cuenta guardar(Cuenta cuenta) {
         return cuentaRepositorio.save(cuenta);
     }
+
+
+    @Override
+    public Cuenta editar(Cuenta cuenta) {return cuentaRepositorio.save(cuenta);
+    }
+
+// ... (otros métodos)
+
+    @Override
+    public Cuenta obtenerPorId(Long id) {
+        return cuentaRepositorio.findById(id).orElse(null);
+    }
+
 
 }

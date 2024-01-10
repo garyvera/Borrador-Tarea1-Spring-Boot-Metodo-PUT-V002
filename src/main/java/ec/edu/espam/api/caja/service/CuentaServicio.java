@@ -8,4 +8,12 @@ public interface CuentaServicio {
     List<Cuenta> obtenerTodos();
 
     Cuenta guardar(Cuenta cuenta);
+
+    Cuenta editar(Cuenta cuenta);
+
+// ... (otros métodos)
+
+    Cuenta obtenerPorId(Long id);
+
+
 }
